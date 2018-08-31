@@ -1,0 +1,369 @@
+/*@font-face {
+  font-family: 'MyWebFont';
+  src: url('webfont.eot'); /* IE9 Compat Modes */
+  /*src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    /*   url('webfont.woff2') format('woff2'), /* Super Modern Browsers */
+      /* url('webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       /*url('webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+       /*url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+/*}*/
+body {
+/*    font-family: 'MyWebFont', Fallback, sans-serif;*/
+	background-color: black;
+	color: rgb(59,67,68);
+	margin: 0;
+	padding: 0;
+    font: 1em/1.4  "Fira Sans" ;
+}
+.pocetna {
+	margin: auto;
+}
+
+.zaglavlje {
+    border-image: url(fb.svg);
+	background-color: RGB(243,189,37);
+	text-align: right;
+	padding-right:300px;
+}
+
+.zaglavlje img{
+	width: 10px;
+	padding: 0 0 0 5px;
+	}
+
+.logo img {
+	float:left;
+	width: 90px;
+	padding-left: 300px;
+	padding-top:0.8em;
+}
+
+.lijevo{
+	text-align: left;
+	padding: 0 0 0 0;
+}
+.desno{
+	text-align: right;
+	padding-right:300px;
+	font-size: 12px; 
+
+}
+a:link, a:visited {
+	color: RGB(243,189,37);
+	text-decoration: none;
+	margin-left:4px;
+	}
+
+a:hover {
+	color: white;
+	text-decoration: underline;
+}
+
+.dio2 img{
+	position: relative;
+	width:1345px;
+	height:auto;
+}
+.tekst2{
+	position: absolute;
+	top:9em;
+	left:25em;
+	padding: 0 0 0 0;
+	width:490px;
+}
+.tekst2 h1{
+	margin: 0 0 0 0;
+	font-weight: bold;
+}
+.sastanak {
+	position: absolute;
+    background-color:RGB(243,189,37);
+	top:23em;
+	left:26em;
+	border-radius: 15px;
+    text-align: center;
+    font-size: 16px;
+	width: 190px;
+    height: 50px;
+	font-weight: bold;
+}
+
+.dio3 {
+	position: relative;
+	background-color: RGB(243,189,37);
+	text-align: left;
+	padding-right:300px;
+	height:900px;
+}
+.tekst3{
+	position: absolute;
+	top:0.2em;
+	left:8em;
+	padding: 0 0 0 0;
+	width:500px;
+	height:300px;
+}	
+.tekst3 h1{
+	margin: 0 0 0 0;
+	font-weight: bold;
+	width:800px;
+}
+.dio3 img{
+	position: relative;
+	top:-2em;
+	left:41.5em;
+	width: 600px;
+	height:auto;
+}
+.tekst4{
+	position: absolute;
+	top:23em;
+	left:45em;
+	padding: 0 0 0 0;
+	width:500px;
+}	
+.slika3 img{
+	position: absolute;
+	top: -3.8em;
+	left: 5em;
+	position: relative;
+	width: 600px;
+	height:auto;
+}
+.clients {
+	background-image: -webkit-linear-gradient(top, RGB(47,37,6), black);
+	text-align: center;
+	height:20px;
+	}
+.clients h1{
+	color:RGB(243,189,37);
+}
+
+.pozadina{
+	position: absolute;
+	opacity:50%;
+	width:100%;
+	height:70%;
+}
+.slike-clients img{
+	width:260px;
+	height:auto;
+	padding: 10px 10px 10px 10px;
+}	
+	
+.cs img{
+	position:relative;
+	height:auto;
+	padding: 10px 10px 10px 10px;
+}	
+.cs{
+    position: relative;
+	text-align:center;
+}
+.cs1{
+    position: relative;
+	text-align:left;
+    padding-left: 230px;
+}
+.cs1 img{
+	position:relative;
+	height:auto;
+	padding: 10px 10px 10px 10px;
+}
+.cs1 div{
+	top:160px;
+}
+
+.txt-gradovi1 {
+    position: absolute;
+    color: RGB(243,189,37);
+    top: auto;
+    bottom: 1px;
+    left: 250px;
+    font: 20px "Fira Sans";
+    font-weight: bold;  
+}
+.txt-gradovi2 {
+    position: absolute;
+    color: RGB(243,189,37);
+    top: auto;
+    bottom: 1px;
+    left: 475px;
+    font: 20px "Fira Sans";
+    font-weight: bold;  
+}
+.txt-gradovi3 {
+    position: absolute;
+    color: RGB(243,189,37);
+    top: auto;
+    bottom: 1px;
+    left: 700px;
+    font: 20px "Fira Sans";
+    font-weight: bold;  
+}
+.txt-gradovi4 {
+    position: absolute;
+    color: RGB(243,189,37);
+    top: auto;
+    bottom: 1px;
+    left: 920px;
+    font: 20px "Fira Sans";
+    font-weight: bold;  
+}
+.dio4 {
+	background-color:black;
+	/*background-image: -webkit-linear-gradient(top, black, RGB(47,37,6));*/
+	text-align: center;
+	height:100px;
+	}
+	
+.dio4 img{
+	width:auto;
+	height:40px;
+}	
+	
+.box img{
+	position: absolute;
+	opacity:50%;
+	width:1345px;
+	height:650px;
+	}
+	
+.box2{
+	position: relative;
+	background-color: RGB(0,0,0,0.8);
+	height:650px;
+	width:1000px;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	}
+.tekst5{
+	margin-left:40px;
+	margin-right:40px;
+	margin-top:0;
+	margin-bottom:0;
+	text-align:center;
+	color:white;
+	}
+.box3{
+	position: relative;
+	background-color: RGB(0,0,0,0.8);
+	height:350px;
+	width:180px;
+	float:left;
+	}	
+.box3 img{
+	height:50px;
+	width:50px;
+	float:center;
+	top:10px;
+	left:70px;
+	}
+.box4{
+	position: absolute;
+	background-color: RGB(0,0,0,0.8);
+	height:350px;
+	width:180px;
+	float:left;
+	left:15em;
+	top:0em;
+	}
+	
+.box5{
+	position: absolute;
+	background-color: RGB(0,0,0,0.8);
+	height:350px;
+	width:180px;
+	float:left;
+	left:15em;
+	top:0em;
+	}
+.box6{
+	position: absolute;
+	background-color: RGB(0,0,0,0.8);
+	height:350px;
+	width:180px;
+	float:left;
+	left:15em;
+	top:0em;
+	}	
+	
+.office{
+	text-align:center;
+	}
+.opcije{
+	background-color:black;
+	}
+
+.slike2{
+	background-color:RGB(20,20,20);
+}	
+.slike2 img{
+	width:200px;
+	height:auto;
+	padding: 10px 10px 10px 10px;
+}	
+
+.final {
+	background-color: RGB(243,189,37);
+	height:220px;
+	color: black;
+}
+.info {
+	float:right;
+	text-align: center;
+	padding-right:300px;
+	color: black;
+}
+	
+.final img{
+	position:relative;
+	width:460px;
+	padding-left:220px;
+	top:-18px;
+	border-color:yellow;
+	}
+
+.futer {
+	background-color: RGB(64,64,65);
+	text-align:left;
+	padding-left:220px;
+	position:relative;	
+}
+.vertikalna{
+	border-left: 3px solid RGB(243,189,37);
+    height: 5px;
+	padding-left:7px;
+	top:20em;
+}
+
+.futer2 {
+	background-color: RGB(33,33,33);
+	height:100px;
+}
+.futer2 p{
+	color: RGB(243,189,37);
+	margin-left:220px;
+}
+
+
+
+.txt-gradovi {
+    position: absolute;
+    color: RGB(243,189,37);
+    top: auto;
+    bottom: 1px;
+    left: 215px;
+    font: 25px "Fira Sans";
+    font-weight: bold;
+    
+}
+
+
+
+
+
+
+
+
