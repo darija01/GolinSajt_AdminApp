@@ -2,21 +2,31 @@
 <?php ob_start();?>
 <?php
 $konekcija=mysqli_connect('localhost', 'root', '','golin');
-$id1=1;
 ?>
-
-
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8" />
-	<title>Golin sajt</title>
-	<link rel="stylesheet" href="Adizajn.css" name="viewport" content="width=device-width, initial-scale=1" />
-	
+<html lang="en">
 
-   
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Admin aplikacija</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    
+
+    <!-- Custom Fonts -->
+<!--    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+    
+    <link rel="stylesheet" href="Adizajn.css" name="viewport" content="width=device-width, initial-scale=1" />
+
 <style>
-   
 .modal {
     display: none; 
     position: fixed; 
@@ -88,54 +98,10 @@ $id1=1;
 	float: right;
 
 }
-.nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    font-weight: bold;
-}
-
-.nav li {
-    float: left;
-}
-
-.nav li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.nav li a:hover:not(.active) {
-    background-color: #111;
-}
-
-.active {
-    background-color: RGB(243,189,37);
-}
 </style>
 </head>
 <body>
-            
-    
-    
-    
-    
 	<div class="pocetna">
-    
-    
-     <nav class="nav" >
-           
-<ul>
-  <li><a class="active" href="Golin.php">Golin sajt</a></li>
-  <li><a href="LogIn.php">Admin</a></li>
-
-</ul>
-    </nav>
-
 		<br>
 		<div class="zaglavlje">
 		<?php
@@ -153,11 +119,11 @@ $id1=1;
 		<div class = "logo">
 			<?php
             
-    $query = "SELECT slika FROM meni WHERE id = '{$id1}' ";
+    $query = "SELECT slika FROM meni where id = 1";
     $tabela = mysqli_query($konekcija, $query);
     while($red = mysqli_fetch_assoc($tabela)){
         $slika = $red['slika'];
-         echo  "<img src='images/$slika'>"; 
+         echo  "<img class='logo1' src='images/$slika'>"; 
   }    ?>		
 		</div>
 		</div>
@@ -190,8 +156,9 @@ $id1=1;
         $naslov = $red['naslov'];
         $tekst = $red['tekst'];
         $slika = $red['slika'];
+        
        
-        echo "<h1 style='width: 70%;'>$naslov</h1>";
+        echo "<h1>$naslov</h1>";
         echo "$tekst";
        
   }    
@@ -205,7 +172,7 @@ $id1=1;
        <span class="zatvaranje">&times;</span>
     <form  action="FormaGolin.php" method="post">
         <div class="forma">
-          <img src="images/GolinPG.svg" width="200px;" class="slika">	<br>
+          <img src="Logo_GolinPG.svg" width="200px;" class="slika" class='img-responsive'>	<br>
           <h3>Zakažite sastanak sa nekim od naših poslodavaca.</h3>
           <div><input class="txt" type="text" name="ime_i_prezime" id="ime_i_prezime" placeholder="Ime i prezime" style="width: 296px; height: 30px;"> </div>
           <div><br><input class="txt" type="text" name="firma" id="firma" placeholder="Firma" style="width: 296px; height: 30px;"> </div>
@@ -241,6 +208,7 @@ window.onclick = function(event) {
 }
 </script>
 	
+	
 	<div class="dio3">
 		<div class="tekst3">
 		
@@ -253,7 +221,7 @@ window.onclick = function(event) {
         $tekst = $red['tekst'];
         $slika = $red['slika'];
         
-        echo "<h1 style='width:30%;'><br>$naslov</h1>";
+        echo "<h1 style= 'width:300px'>$naslov</h1>";
         echo "$tekst";
         
   }    ?>
@@ -280,7 +248,7 @@ window.onclick = function(event) {
   }    ?>
 		</div>
 		<div class="slika3">
-		<?php  echo  "<img src='images/$slika'>";?>
+		<?php  echo  "<img class='img-responsive' src='images/$slika'>";?>
 		</div>
         </div>
         
@@ -290,8 +258,7 @@ window.onclick = function(event) {
 		</div><br><br>
 		
 	<div class="slike">
-	<img class="pozadina" style="width:100%;
-	height:70%;" src="images/fotka4.png" ></div>
+	<img class="pozadina" src="images/fotka4.png" ></div>
 		<div class="slike-clients">
 		<div class="cs" style="width:80%; margin-left:10%;">
 		 <?php
@@ -303,7 +270,7 @@ window.onclick = function(event) {
         $slike = $red['slike'];
         $pozadina = $red['pozadina'];
         
-        echo "<img style='width:25%;' src='images/Fotke clients/$slike'>";
+        echo "<img width='200'  src='images/Fotke clients/$slike'>";
         
   }    ?>
 		</div>
@@ -311,13 +278,12 @@ window.onclick = function(event) {
 	</div>	
         
 		<div class="dio4"><br><br>
-			<img src="images/go-all-in.gif" style="width:17%;
-	height:25%;">
+			<img src="images/go-all-in.gif">
 		</div>
 	
 	
 	<div class="box">
-	<img src="images/fotka5.png" style="width:100%;">
+	<img src="images/fotka5.png">
 		<div class="box2">
 		<div class="tekst5">
 		
@@ -488,7 +454,7 @@ window.onclick = function(event) {
 		<p>+382 223 240</p>
 		<p>info@amplitudo.me</p>
 		</div>
-	<img src="images/mapa.png" style="width:35%; height: 115%;">
+	<img src="images/mapa.png">
 	</div><br><br>		
 	
 	<div class="futer">	
@@ -532,5 +498,12 @@ window.onclick = function(event) {
     
     
 
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
 </body>
+
 </html>

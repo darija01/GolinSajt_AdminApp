@@ -49,6 +49,7 @@ $konekcija=mysqli_connect('localhost', 'root', '','golin');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                 <a class="navbar-brand" href="Golin.php">Golin</a>
                 <a class="navbar-brand" href="index.php">Admin aplikacija</a>
             </div>
             <!-- Top Menu Items -->
@@ -150,54 +151,8 @@ $konekcija=mysqli_connect('localhost', 'root', '','golin');
                         <h1 class="page-header">
                            Offices
                         </h1>
-                    <div class="col-xs">
-
-            <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-              <th>ID</th>
-              <th>Naslov</th>
-              <th>Opcije</th>
-              <th>Slika</th>
-              <th>Naziv slike</th>
-              <th colspan="3"></th>
-                </tr>
-          </thead>   
-    <tbody>
-    <?php
-    $query = "SELECT * FROM offices";
-    $tabela = mysqli_query($konekcija, $query);
-    while($red = mysqli_fetch_assoc($tabela)){
-        $id = $red['id'];
-        $naslov = $red['naslov'];
-        $opcije = $red['opcije'];
-        $slika = $red['slika'];
-        $naziv_slika = $red['naziv_slika'];
-        
-        echo "<tr>";
-        echo "<td>$id</td>";
-        echo "<td>$naslov</td>";
-        echo "<td>$opcije</td>";
-        echo "<td><img width='150' class='img-responsive' src='images/Fotke offices/crno-bijelo/$slika'></td>";
-        echo "<td>$naziv_slika</td>";
-        echo "<td><a href='offices.php?obrisi=$id'>Obriši</a></td>";
-        echo "<td><a href='offices.php?izmijeni=$id'>Izmijeni</a></td>";
-        echo "<td><a href='offices.php?dodaj=$id'>Dodaj</a></td>";
-        echo "</tr>";
-  }    
-    if(isset($_GET['obrisi'])){
-    
-    $id = $_GET['obrisi']; 
-
-$query = "DELETE from offices WHERE id = '{$id}' ";
-$brisanje = mysqli_query($konekcija, $query);
-        header("Location: offices.php");  
-}
-?>
- </tbody>
- </table>       
                         
-                <form action="" method="post">
+                  <form action="" method="post">
               <div class="form-group">
               
     <?php
@@ -263,7 +218,7 @@ $tabela2 = mysqli_query($konekcija, $query);
             
         <p>Naslov</p>
         <input value="" type="text" class="form-control" name="naslov"><br>
-        <p>Tekst</p>
+        <p>Opcije</p>
         <input value="" class="form-control" name="opcije"><br>
         <p>Slika</p>
         <input value="" type="text" class="form-control" name="slika"><br>
@@ -287,9 +242,15 @@ $tabela2 = mysqli_query($konekcija, $query);
         $opcije = mysqli_real_escape_string($konekcija, $opcije);
         $slika = mysqli_real_escape_string($konekcija, $slika);
         $naziv_slika = mysqli_real_escape_string($konekcija, $naziv_slika);
-        
+    
     if($naslov == "" || empty($naslov)){
-        echo "Morate unijeti naziv.";
+        echo "Nijeste popunili polje naslov.";
+    }else if($opcije == "" || empty($opcije)){
+         echo "Nijeste popunili polje opcije.";
+    }else if($slika == "" || empty($slika)){
+         echo "Nijeste popunili polje slika.";
+    }else if($naziv_slika == "" || empty($naziv_slika)){
+         echo "Nijeste popunili polje box naziv slika.";
     }else{
         $query="Insert into offices (naslov, opcije, slika, naziv_slika) value ('{$naslov}', '{$opcije}', '{$slika}', '{$naziv_slika}')";
         $rezultat = mysqli_query($konekcija, $query);
@@ -304,7 +265,52 @@ $tabela2 = mysqli_query($konekcija, $query);
                </div>
                 </form> 
 
-                    </div>
+
+            <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+              <th>ID</th>
+              <th>Naslov</th>
+              <th>Opcije</th>
+              <th>Slika</th>
+              <th>Naziv slike</th>
+              <th colspan="3"></th>
+                </tr>
+          </thead>   
+    <tbody>
+    <?php
+    $query = "SELECT * FROM offices";
+    $tabela = mysqli_query($konekcija, $query);
+    while($red = mysqli_fetch_assoc($tabela)){
+        $id = $red['id'];
+        $naslov = $red['naslov'];
+        $opcije = $red['opcije'];
+        $slika = $red['slika'];
+        $naziv_slika = $red['naziv_slika'];
+        
+        echo "<tr>";
+        echo "<td>$id</td>";
+        echo "<td>$naslov</td>";
+        echo "<td>$opcije</td>";
+        echo "<td><img width='150' class='img-responsive' src='images/Fotke offices/crno-bijelo/$slika'></td>";
+        echo "<td>$naziv_slika</td>";
+        echo "<td><a href='offices.php?obrisi=$id'>Obriši</a></td>";
+        echo "<td><a href='offices.php?izmijeni=$id'>Izmijeni</a></td>";
+        echo "<td><a href='offices.php?dodaj=$id'>Dodaj</a></td>";
+        echo "</tr>";
+  }    
+    if(isset($_GET['obrisi'])){
+    
+    $id = $_GET['obrisi']; 
+
+$query = "DELETE from offices WHERE id = '{$id}' ";
+$brisanje = mysqli_query($konekcija, $query);
+        header("Location: offices.php");  
+}
+?>
+ </tbody>
+ </table>       
+                   
  
 
                     </div>

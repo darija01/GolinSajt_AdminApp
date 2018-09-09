@@ -1,5 +1,6 @@
-<?php
 
+<?php
+ 
 $konekcija=mysqli_connect('localhost', 'root', '','golin');
 
      $greska=null; 
@@ -49,16 +50,17 @@ $konekcija=mysqli_connect('localhost', 'root', '','golin');
                        $poruka = "Zakazali  ste sastanak.";
                         echo $poruka;
                         
-                $msg = "First line of text\nSecond line of text";
                            
-                           $msg = wordwrap($msg,70);
+                           $to = 'darija.bojanovic@udg.edu.me';
+                           $subject = 'Sastanak';
+                           $message = $ime_prezime . ' je zakazao sastanak na dan ' . $datum . ' u ' . $vrijeme . 'sati.';
                            
-                           
-                           
-                         mail("darija.bojanovic@udg.edu.me", "Sastanak", $msg) ; 
+
+                           mail($to, $subject, $message);
+
                            
                     
-                           header ("Location: Golin.html");
+                           header ("Location: FormaGolin.php");
            } else{
               die ("MYSQL Error: " . mysqli_error($konekcija)); 
            } 
@@ -67,4 +69,5 @@ $konekcija=mysqli_connect('localhost', 'root', '','golin');
 
     
 ?>
+
 

@@ -48,6 +48,7 @@ $konekcija=mysqli_connect('localhost', 'root', '','golin');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+       <a class="navbar-brand" href="Golin.php">Golin</a>
                 <a class="navbar-brand" href="index.php">Admin aplikacija</a>
             </div>
             <!-- Top Menu Items -->
@@ -248,7 +249,7 @@ $odbijeno = mysqli_query($konekcija, $query);
     $datum_od = $_POST['datum_od'];
     $datum_do = $_POST['datum_do']; 
 
-$query = "SELECT * from sastanci where datum between '{$datum_od}' and '{$datum_od}' order by datum";
+$query = "SELECT * from sastanci where datum between '{$datum_od}' and '{$datum_do}' order by datum";
 $pretraga = mysqli_query($konekcija, $query);
      $brojac = mysqli_num_rows($pretraga);
 

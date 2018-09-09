@@ -45,6 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                 <a class="navbar-brand" href="Golin.php">Golin</a>
                 <a class="navbar-brand" href="index.php">Admin aplikacija</a>
             </div>
             <!-- Top Menu Items -->

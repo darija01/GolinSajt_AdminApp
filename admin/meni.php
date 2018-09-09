@@ -49,6 +49,7 @@ $konekcija=mysqli_connect('localhost', 'root', '','golin');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                 <a class="navbar-brand" href="Golin.php">Golin</a>
                 <a class="navbar-brand" href="index.php">Admin aplikacija</a>
             </div>
             <!-- Top Menu Items -->
@@ -150,46 +151,8 @@ $konekcija=mysqli_connect('localhost', 'root', '','golin');
                         <h1 class="page-header">
                            Meni
                         </h1>
-                    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-              <th>ID</th>
-              <th>Slika</th>
-              <th>Kategorija</th>
-              <th colspan="2"></th>
-                </tr>
-          </thead>   
-    <tbody>
-    <?php
-    $query = "SELECT * FROM meni";
-    $tabela = mysqli_query($konekcija, $query);
-    while($red = mysqli_fetch_assoc($tabela)){
-        $id = $red['id'];
-        $slika = $red['slika'];
-        $kategorija = $red['kategorija'];
-        
-        
-        echo "<tr>";
-        echo "<td>$id</td>";
-        echo "<td><img width='200' class='img-responsive' src='images/$slika'></td>";
-        echo "<td>$kategorija</td>";
-        echo "<td><a href='meni.php?obrisi=$id'>Obriši</a></td>";
-        echo "<td><a href='meni.php?izmijeni=$id'>Izmijeni</a></td>";
-        echo "</tr>";
-  }    
-    if(isset($_GET['obrisi'])){
-    
-    $id = $_GET['obrisi']; 
-
-$query = "DELETE from meni WHERE id = '{$id}' ";
-$brisanje = mysqli_query($konekcija, $query);
-        header("Location: meni.php");  
-}
-?>
- </tbody>
- </table>       
                         
-                <form action="" method="post">
+                         <form action="" method="post">
               <div class="form-group">
               
               <?php
@@ -233,6 +196,46 @@ if(isset($_POST['btn_izmjena'])){
 ?>
                </div>
                 </form>     
+                    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+              <th>ID</th>
+              <th>Slika</th>
+              <th>Kategorija</th>
+              <th colspan="2"></th>
+                </tr>
+          </thead>   
+    <tbody>
+    <?php
+    $query = "SELECT * FROM meni";
+    $tabela = mysqli_query($konekcija, $query);
+    while($red = mysqli_fetch_assoc($tabela)){
+        $id = $red['id'];
+        $slika = $red['slika'];
+        $kategorija = $red['kategorija'];
+        
+        
+        echo "<tr>";
+        echo "<td>$id</td>";
+        echo "<td><img width='200' class='img-responsive' src='images/$slika'></td>";
+        echo "<td>$kategorija</td>";
+        echo "<td><a href='meni.php?obrisi=$id'>Obriši</a></td>";
+        echo "<td><a href='meni.php?izmijeni=$id'>Izmijeni</a></td>";
+        echo "</tr>";
+  }    
+    if(isset($_GET['obrisi'])){
+    
+    $id = $_GET['obrisi']; 
+
+$query = "DELETE from meni WHERE id = '{$id}' ";
+$brisanje = mysqli_query($konekcija, $query);
+        header("Location: meni.php");  
+}
+?>
+ </tbody>
+ </table>       
+                        
+               
                     </div>
                 </div>
                 

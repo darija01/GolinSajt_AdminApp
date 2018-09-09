@@ -49,6 +49,7 @@ $konekcija=mysqli_connect('localhost', 'root', '','golin');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                 <a class="navbar-brand" href="Golin.php">Golin</a>
                 <a class="navbar-brand" href="index.php">Admin aplikacija</a>
             </div>
             <!-- Top Menu Items -->
@@ -150,6 +151,81 @@ $konekcija=mysqli_connect('localhost', 'root', '','golin');
                         <h1 class="page-header">
                            Contact
                         </h1>
+                                 
+                <form action="" method="post">
+              <div class="form-group">
+              
+
+              <?php
+                  
+    if(isset($_GET['izmijeni'])){
+    $id = $_GET['izmijeni']; 
+$query = "SELECT * from contact WHERE id = '{$id}'";
+$tabela2 = mysqli_query($konekcija, $query);
+            
+     while($red = mysqli_fetch_assoc($tabela2)){
+        $id = $red['id'];
+        $slika = $red['slika'];
+        $naslov = $red['naslov'];
+        $adresa = $red['adresa'];
+        $telefon = $red['telefon'];
+        $mail = $red['mail'];
+            ?>   
+            
+            
+            
+         <script>
+  function setfilename(val)
+  {
+    var fileName = val.substr(val.lastIndexOf("\\")+1, val.length);
+    document.getElementById("slike").value = fileName;
+  }
+</script>             
+   
+
+
+  <input  type="file"  onchange="setfilename(this.value);" value="Izaberite sliku"/ >
+  <input value="<?php if(isset($id)){ echo $slika; }?>" type="text" class="form-control" name="slika" id="slike"  disabled="disabled">
+
+
+      
+        <p>Slika</p>
+       <input value="<?php if(isset($id)){ echo $slika; }?>" type="text" class="form-control" name="slika" id="slike"><br>
+       <p>Naslov</p>
+        <input value="<?php if(isset($id)){ echo $naslov; }?>" type="text" class="form-control" name="naslov"><br>
+        <p>Adresa</p>
+         <input value="<?php if(isset($id)){ echo $adresa; }?>" type="text" class="form-control" name="adresa"><br>
+         <p>Broj telefona</p>
+         <input value="<?php if(isset($id)){ echo $telefon; }?>" type="text" class="form-control" name="telefon"><br>
+          <p>E-mail</p>
+         <input value="<?php if(isset($id)){ echo $mail; }?>" type="text" class="form-control" name="mail"><br>
+        <input class="btn btn-primary" type="submit" name="btn_izmjena" value="Izmijeni" >
+        <input class="btn btn-primary" type="submit" name="odustani" value ="Odustani" class="btn btn-default">
+    
+<?php }} ?>
+
+<?php                  
+if(isset($_POST['btn_izmjena'])){
+    $slika = $_POST['slika']; 
+    $naslov = $_POST['naslov']; 
+    $adresa = $_POST['adresa']; 
+    $telefon = $_POST['telefon']; 
+    $mail = $_POST['mail'];
+    
+    
+    $query = "UPDATE contact SET slika = '{$slika}', naslov = '{$naslov}', adresa = '{$adresa}', telefon = '{$telefon}',  mail = '{$mail}' WHERE id = '{$id}' ";
+    $izmjena = mysqli_query($konekcija, $query);
+        header("Location: contact.php");  
+    if($izmjena){
+        die("Greška" . mysqli_error($konekcija));
+      }    
+}  
+   if(isset($_POST['odustani'])){
+   header ("Location: contact.php"); 
+}
+?>
+               </div>
+                </form>     
                     <table class="table table-bordered table-hover">
         <thead>
             <tr>
@@ -196,62 +272,7 @@ $brisanje = mysqli_query($konekcija, $query);
 ?>
  </tbody>
  </table>       
-                        
-                <form action="" method="post">
-              <div class="form-group">
-              
-              <?php
-                  
-    if(isset($_GET['izmijeni'])){
-    $id = $_GET['izmijeni']; 
-$query = "SELECT * from contact WHERE id = '{$id}'";
-$tabela2 = mysqli_query($konekcija, $query);
-            
-     while($red = mysqli_fetch_assoc($tabela2)){
-        $id = $red['id'];
-        $slika = $red['slika'];
-        $naslov = $red['naslov'];
-        $adresa = $red['adresa'];
-        $telefon = $red['telefon'];
-        $mail = $red['mail'];
-            ?>   
-        <p>Slika</p>
-       <input value="<?php if(isset($id)){ echo $slika; }?>" type="text" class="form-control" name="slika"><br>
-       <p>Naslov</p>
-        <input value="<?php if(isset($id)){ echo $naslov; }?>" type="text" class="form-control" name="naslov"><br>
-        <p>Adresa</p>
-         <input value="<?php if(isset($id)){ echo $adresa; }?>" type="text" class="form-control" name="adresa"><br>
-         <p>Broj telefona</p>
-         <input value="<?php if(isset($id)){ echo $telefon; }?>" type="text" class="form-control" name="telefon"><br>
-          <p>E-mail</p>
-         <input value="<?php if(isset($id)){ echo $mail; }?>" type="text" class="form-control" name="mail"><br>
-        <input class="btn btn-primary" type="submit" name="btn_izmjena" value="Izmijeni" >
-        <input class="btn btn-primary" type="submit" name="odustani" value ="Odustani" class="btn btn-default">
-    
-<?php }} ?>
-
-<?php                  
-if(isset($_POST['btn_izmjena'])){
-    $slika = $_POST['slika']; 
-    $naslov = $_POST['naslov']; 
-    $adresa = $_POST['adresa']; 
-    $telefon = $_POST['telefon']; 
-    $mail = $_POST['mail'];
-    
-    
-    $query = "UPDATE contact SET slika = '{$slika}', naslov = '{$naslov}', adresa = '{$adresa}', telefon = '{$telefon}',  mail = '{$mail}' WHERE id = '{$id}' ";
-    $izmjena = mysqli_query($konekcija, $query);
-        header("Location: contact.php");  
-    if($izmjena){
-        die("Greška" . mysqli_error($konekcija));
-      }    
-}  
-   if(isset($_POST['odustani'])){
-   header ("Location: contact.php"); 
-}
-?>
-               </div>
-                </form>     
+               
                     </div>
                 </div>
                 

@@ -142,6 +142,11 @@ $password = $_POST['password'];
 $username = mysqli_real_escape_string($konekcija, $username);
 $password = mysqli_real_escape_string($konekcija, $password);
     
+    $hashformat="$2y$10$";
+    $salt="pasvord123123123123123";
+    $enkripcija=crypt($password,$salt);
+    echo $enkripcija;
+    
 $query="select * from admin_korisnici where username = '{$username}'";
 $select_user_query = mysqli_query($konekcija, $query);
 

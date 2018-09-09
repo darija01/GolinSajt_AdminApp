@@ -49,6 +49,7 @@ $konekcija=mysqli_connect('localhost', 'root', '','golin');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                 <a class="navbar-brand" href="Golin.php">Golin</a>
                 <a class="navbar-brand" href="index.php">Admin aplikacija</a>
             </div>
             <!-- Top Menu Items -->
@@ -150,48 +151,7 @@ $konekcija=mysqli_connect('localhost', 'root', '','golin');
                         <h1 class="page-header">
                            Clients
                         </h1>
- <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-              <th>ID</th>
-              <th>Naslov</th>
-              <th>Slike</th>
-              <th>Pozadina</th>
-              <th colspan="2"></th>
-                </tr>
-          </thead>   
-    <tbody>
-    <?php
-    $query = "SELECT * FROM clients";
-    $tabela = mysqli_query($konekcija, $query);
-    while($red = mysqli_fetch_assoc($tabela)){
-        $id = $red['id'];
-        $naslov = $red['naslov'];
-        $slike = $red['slike'];
-        $pozadina = $red['pozadina'];
-        
-        echo "<tr>";
-        echo "<td>$id</td>";
-        echo "<td>$naslov</td>";
-        echo "<td><img width='200' class='img-responsive' src='images/Fotke clients/$slike'></td>";
-        echo "<td><img width='200' class='img-responsive' src='images/$pozadina'></td>";
-        echo "<td><a href='clients.php?obrisi=$id'>Obriši</a></td>";
-         echo "<td><a href='clients.php?izmijeni=$id'>Izmijeni</a></td>";
-        echo "</tr>";
-  }    
-    if(isset($_GET['obrisi'])){
-    
-    $id = $_GET['obrisi']; 
-
-$query = "DELETE from clients WHERE id = '{$id}' ";
-$brisanje = mysqli_query($konekcija, $query);
-        header("Location: clients.php");  
-}
-?>
- </tbody>
- </table>       
-                        
-                <form action="" method="post">
+                         <form action="" method="post">
               <div class="form-group">
               
               <?php
@@ -237,6 +197,48 @@ if(isset($_POST['btn_izmjena'])){
 ?>
                </div>
                 </form>     
+ <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+              <th>ID</th>
+              <th>Naslov</th>
+              <th>Slike</th>
+              <th>Pozadina</th>
+              <th colspan="2"></th>
+                </tr>
+          </thead>   
+    <tbody>
+    <?php
+    $query = "SELECT * FROM clients";
+    $tabela = mysqli_query($konekcija, $query);
+    while($red = mysqli_fetch_assoc($tabela)){
+        $id = $red['id'];
+        $naslov = $red['naslov'];
+        $slike = $red['slike'];
+        $pozadina = $red['pozadina'];
+        
+        echo "<tr>";
+        echo "<td>$id</td>";
+        echo "<td>$naslov</td>";
+        echo "<td><img width='200' class='img-responsive' src='images/Fotke clients/$slike'></td>";
+        echo "<td><img width='200' class='img-responsive' src='images/$pozadina'></td>";
+        echo "<td><a href='clients.php?obrisi=$id'>Obriši</a></td>";
+         echo "<td><a href='clients.php?izmijeni=$id'>Izmijeni</a></td>";
+        echo "</tr>";
+  }    
+    if(isset($_GET['obrisi'])){
+    
+    $id = $_GET['obrisi']; 
+
+$query = "DELETE from clients WHERE id = '{$id}' ";
+$brisanje = mysqli_query($konekcija, $query);
+        header("Location: clients.php");  
+}
+?>
+ </tbody>
+ </table>       
+                        
+               
                     </div>
                 </div>
                 

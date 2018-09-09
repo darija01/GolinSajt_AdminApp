@@ -47,6 +47,7 @@ $konekcija=mysqli_connect('localhost', 'root', '','golin');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                 <a class="navbar-brand" href="Golin.php">Golin</a>
                 <a class="navbar-brand" href="index.php">Admin aplikacija</a>
             </div>
             <!-- Top Menu Items -->
@@ -148,48 +149,7 @@ $konekcija=mysqli_connect('localhost', 'root', '','golin');
                         <h1 class="page-header">
                             Blok 2
                         </h1>
-                   <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-              <th>ID</th>
-              <th>Naslov</th>
-              <th>Tekst</th>
-              <th>Slika</th>
-              <th colspan="2"></th>
-                </tr>
-          </thead>   
-    <tbody>
-    <?php
-    $query = "SELECT * FROM blok2";
-    $tabela = mysqli_query($konekcija, $query);
-    while($red = mysqli_fetch_assoc($tabela)){
-        $id = $red['id'];
-        $naslov = $red['naslov'];
-        $tekst = $red['tekst'];
-        $slika = $red['slika'];
-        
-        echo "<tr>";
-        echo "<td>$id</td>";
-        echo "<td>$naslov</td>";
-        echo "<td>$tekst</td>";
-         echo "<td><img width='1000'class='img-responsive' src='images/$slika'></td>";
-        echo "<td><a href='blok2.php?obrisi=$id'>Obriši</a></td>";
-         echo "<td><a href='blok2.php?izmijeni=$id'>Izmijeni</a></td>";
-        echo "</tr>";
-  }    
-    if(isset($_GET['obrisi'])){
-    
-    $id = $_GET['obrisi']; 
-
-$query = "DELETE from blok2 WHERE id = '{$id}' ";
-$brisanje = mysqli_query($konekcija, $query);
-        header("Location: blok2.php");  
-}
-?>
- </tbody>
- </table>       
-                        
-                <form action="" method="post">
+                         <form action="" method="post">
               <div class="form-group">
               
               <?php
@@ -235,6 +195,48 @@ if(isset($_POST['btn_izmjena'])){
 ?>
                </div>
                 </form>  
+                   <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+              <th>ID</th>
+              <th>Naslov</th>
+              <th>Tekst</th>
+              <th>Slika</th>
+              <th colspan="2"></th>
+                </tr>
+          </thead>   
+    <tbody>
+    <?php
+    $query = "SELECT * FROM blok2";
+    $tabela = mysqli_query($konekcija, $query);
+    while($red = mysqli_fetch_assoc($tabela)){
+        $id = $red['id'];
+        $naslov = $red['naslov'];
+        $tekst = $red['tekst'];
+        $slika = $red['slika'];
+        
+        echo "<tr>";
+        echo "<td>$id</td>";
+        echo "<td>$naslov</td>";
+        echo "<td>$tekst</td>";
+         echo "<td><img width='1000'class='img-responsive' src='images/$slika'></td>";
+        echo "<td><a href='blok2.php?obrisi=$id'>Obriši</a></td>";
+         echo "<td><a href='blok2.php?izmijeni=$id'>Izmijeni</a></td>";
+        echo "</tr>";
+  }    
+    if(isset($_GET['obrisi'])){
+    
+    $id = $_GET['obrisi']; 
+
+$query = "DELETE from blok2 WHERE id = '{$id}' ";
+$brisanje = mysqli_query($konekcija, $query);
+        header("Location: blok2.php");  
+}
+?>
+ </tbody>
+ </table>       
+                        
+               
                     </div>
                 </div>
                 

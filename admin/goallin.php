@@ -49,6 +49,7 @@ $konekcija=mysqli_connect('localhost', 'root', '','golin');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                 <a class="navbar-brand" href="Golin.php">Golin</a>
                 <a class="navbar-brand" href="index.php">Admin aplikacija</a>
             </div>
             <!-- Top Menu Items -->
@@ -150,7 +151,138 @@ $konekcija=mysqli_connect('localhost', 'root', '','golin');
                         <h1 class="page-header">
                            Go All In
                         </h1>
-                    <div class="col-xs">
+                
+<form action="" method="post">
+              <div class="form-group">
+              
+    <?php
+                  
+    if(isset($_GET['izmijeni'])){
+    $id = $_GET['izmijeni']; 
+$query = "SELECT * from goallin WHERE id = '{$id}'";
+$tabela2 = mysqli_query($konekcija, $query);
+            
+     while($red = mysqli_fetch_assoc($tabela2)){
+        $id = $red['id'];
+        $naslov1 = $red['naslov1'];
+        $naslov2 = $red['naslov2'];
+        $tekst = $red['tekst'];
+        $box_naslov = $red['box_naslov'];
+        $box_slika = $red['box_slika'];
+        $box_tekst = $red['box_tekst'];
+            ?>   
+       <p>Naslov 1</p>
+       <input value="<?php if(isset($id)){ echo $naslov1; }?>" type="text" class="form-control" name="naslov1"><br>
+       <p>Naslov 2</p>
+        <input value="<?php if(isset($id)){ echo $naslov2; }?>" type="text" class="form-control" name="naslov2"><br>
+        <p>Tekst</p>
+        <input value="<?php if(isset($id)){ echo $tekst; }?>" type="text" class="form-control" name="tekst"><br>
+        <p>Box naslov</p>
+        <input value="<?php if(isset($id)){ echo $box_naslov; }?>" type="text" class="form-control" name="box_naslov"><br>
+        <p>Box slika</p>
+         <input value="<?php if(isset($id)){ echo $box_slika; }?>" type="text" class="form-control" name="box_slika"><br>
+         <p>Box tekst</p>
+          <input value="<?php if(isset($id)){ echo $box_tekst; }?>" type="text" class="form-control" name="box_tekst"><br>
+        <input class="btn btn-primary" type="submit" name="btn_izmjenaa" value="Izmijeni">
+        <input class="btn btn-primary" type="submit" name="odustani" value ="Odustani" class="btn btn-default">
+<?php }} ?>
+<?php                  
+if(isset($_POST['btn_izmjenaa'])){
+    
+        $naslov1 = $_POST['naslov1'];
+        $naslov2 = $_POST['naslov2'];
+        $tekst = $_POST['tekst'];
+        $box_naslov = $_POST['box_naslov'];
+        $box_slika = $_POST['box_slika'];
+        $box_tekst = $_POST['box_tekst'];
+  
+    
+    $query = "UPDATE goallin SET naslov1 = '{$naslov1}', naslov2 = '{$naslov2}', tekst = '{$tekst}', box_naslov = '{$box_naslov}', box_slika = '{$box_slika}', box_tekst = '{$box_tekst}' WHERE id = '{$id}' ";
+    $tabela2 = mysqli_query($konekcija, $query);
+        header("Location: goallin.php");  
+    if($tabela2){
+        die("Greška" . mysqli_error($konekcija));
+      }   }    
+  
+   if(isset($_POST['odustani'])){
+   header ("Location: goallin.php"); 
+}                 
+?>
+<?php       
+        if(isset($_GET['dodaj'])){
+    $id = $_GET['dodaj']; 
+$query = "SELECT * from goallin WHERE id = '{$id}'";
+$tabela2 = mysqli_query($konekcija, $query);
+            
+     while($red = mysqli_fetch_assoc($tabela2)){
+        $id = $red['id'];
+        $naslov1 = $red['naslov1'];
+        $naslov2 = $red['naslov2'];
+        $tekst = $red['tekst'];
+        $box_slika = $red['box_slika'];
+        $box_naslov = $red['box_naslov'];
+        $box_tekst = $red['box_tekst'];
+?>   
+       <p>Naslov 1</p>      
+        <input  type="text" class="form-control" name="naslov1"><br>
+       <p>Naslov 2</p>
+       <input type="text" class="form-control" name="naslov2"><br>
+       <p>Tekst</p>
+        <input  type="text" class="form-control" name="tekst"><br>
+        <p>Box slika</p>
+         <input  type="text" class="form-control" name="box_slika"><br>
+          <p>Box naslov</p>
+         <input  type="text" class="form-control" name="box_naslov"><br>
+         <p>Box tekst</p>
+          <input type="text" class="form-control" name="box_tekst"><br>
+        <input class="btn btn-primary" type="submit" name="btndodaj" value="Dodaj" >
+        <input class="btn btn-primary" type="submit" name="odustani" value ="Odustani" class="btn btn-default">
+<?php }} ?>        
+                  
+<?php              
+                  
+    if(isset($_POST['btndodaj'])){
+
+   $naslov1 = $_POST['naslov1']; 
+    $naslov2 = $_POST['naslov2']; 
+    $tekst = $_POST['tekst']; 
+    $box_slika = $_POST['box_slika']; 
+    $box_naslov = $_POST['box_naslov']; 
+    $box_tekst = $_POST['box_tekst']; 
+        
+        $naslov1 = mysqli_real_escape_string($konekcija, $naslov1);
+        $naslov2 = mysqli_real_escape_string($konekcija, $naslov2);
+        $tekst = mysqli_real_escape_string($konekcija, $tekst);
+        $box_slika = mysqli_real_escape_string($konekcija, $box_slika);
+        $box_naslov = mysqli_real_escape_string($konekcija, $box_naslov);
+        $box_tekst = mysqli_real_escape_string($konekcija, $box_tekst);
+        
+    if($naslov1 == "" || empty($naslov1)){
+        echo "Nijeste popunili polje naslov 1.";
+    }else if($naslov2 == "" || empty($naslov2)){
+         echo "Nijeste popunili polje naslov 2.";
+    }else if($tekst == "" || empty($tekst)){
+         echo "Nijeste popunili polje tekst.";
+    }else if($box_slika == "" || empty($box_slika)){
+         echo "Nijeste popunili polje box slika.";
+    }else if($box_naslov == "" || empty($box_naslov)){
+         echo "Nijeste popunili polje box naslov.";
+    }else if($box_tekst == "" || empty($box_tekst)){
+         echo "Nijeste popunili polje box tekst.";
+     }else{ 
+        $query="Insert into goallin (naslov1, naslov2, tekst, box_naslov, box_slika, box_tekst) value ('{$naslov1}', '{$naslov2}', '{$tekst}', '{$box_naslov}',  '{$box_slika}', '{$box_tekst}')";
+        $rezultat = mysqli_query($konekcija, $query);
+        header("Location: goallin.php");
+        if(!$rezultat){
+            die('Greška'.mysqli_error($konekcija));
+        }
+ }
+         }
+?>
+          
+        </div>
+                        </form>
+   
       
             <table class="table table-bordered table-hover">
         <thead>
@@ -162,7 +294,8 @@ $konekcija=mysqli_connect('localhost', 'root', '','golin');
               <th>Box slika</th>
               <th>Box naslov</th>
               <th>Box tekst</th>
-              <th colspan="3"></th>
+              <th colspan="3"> </th>
+               
                 </tr>
           </thead>   
     <tbody>
@@ -188,12 +321,10 @@ $konekcija=mysqli_connect('localhost', 'root', '','golin');
          echo "<td>$box_tekst</td>";
    
         echo "<td><a href='goallin.php?obrisi=$id'>Obriši</a></td>";
-         echo "<td><a href='goallin.php?izmijeni=$id'>Izmijeni</a></td>";
+        echo "<td><a href='goallin.php?izmijeni=$id'>Izmijeni</a></td>";
          echo "<td><a href='goallin.php?dodaj=$id'>Dodaj</a></td>";
         echo "</tr>";
   }
-        
-    
     if(isset($_GET['obrisi'])){
     
     $id = $_GET['obrisi']; 
@@ -201,168 +332,15 @@ $konekcija=mysqli_connect('localhost', 'root', '','golin');
 $query = "DELETE from goallin  WHERE id = '{$id}' ";
 $odbijeno = mysqli_query($konekcija, $query);
         header("Location: goallin.php");  
+       
 }
    ?>
     </tbody>
  </table>
   
-  
-    <form action="" method="post">
-              <div class="form-group">
-   <?php
-   if(isset($_GET['izmijeni'])){
-    $id = $_GET['izmijeni']; 
-$query = "SELECT * from goallin WHERE id = '{$id}'";
-$tabela2 = mysqli_query($konekcija, $query);
-            
-     while($red = mysqli_fetch_assoc($tabela2)){
-        $id = $red['id'];
-        $naslov1 = $red['naslov1'];
-        $naslov2 = $red['naslov2'];
-        $tekst = $red['tekst'];
-        $box_slika = $red['box_slika'];
-        $box_naslov = $red['box_naslov'];
-        $box_tekst = $red['box_tekst'];
-            ?>   
-        <p>Naslov 1</p>
-       <input value="<?php if(isset($id)){ echo $naslov1; }?>" type="text" class="form-control" name="naslov1"><br>
-       <p>Naslov 2</p>
-       <input value="<?php if(isset($id)){ echo $naslov2; }?>" type="text" class="form-control" name="naslov2"><br>
-       <p>Tekst</p>
-        <input value="<?php if(isset($id)){ echo $tekst; }?>" type="text" class="form-control" name="tekst"><br>
-        <p>Box slika</p>
-         <input value="<?php if(isset($id)){ echo $box_slika; }?>" type="text" class="form-control" name="box_slika"><br>
-          <p>Box naslov</p>
-         <input value="<?php if(isset($id)){ echo $box_naslov; }?>" type="text" class="form-control" name="box_naslov"><br>
-         <p>Box tekst</p>
-          <input value="<?php if(isset($id)){ echo $box_tekst; }?>" type="text" class="form-control" name="box_tekst"><br>
-        <input class="btn btn-primary" type="submit" name="btn_izmjena" value="Izmijeni" >
-        <input class="btn btn-primary" type="submit" name="odustani" value ="Odustani" class="btn btn-default">
-    
-<?php }} ?>
-
-<?php                  
-if(isset($_POST['btn_izmjena'])){
-    $naslov1 = $_POST['naslov1']; 
-    $naslov2 = $_POST['naslov2']; 
-    $tekst = $_POST['tekst']; 
-    $box_slika = $_POST['box_slika']; 
-    $box_naslov = $_POST['box_naslov']; 
-    $box_tekst = $_POST['box_tekst']; 
-    
-    $query = "UPDATE goallin SET naslov1 = '{$naslov1}', naslov2 = '{$naslov2}', tekst = '{$tekst}', box_slika = '{$box_slika}', box_naslov = '{$box_naslov}', box_tekst = '{$box_tekst}' WHERE id = '{$id}' ";
-    $izmjena = mysqli_query($konekcija, $query);
-        header("Location: goallin.php");  
-    if($izmjena){
-        die("Greška" . mysqli_error($konekcija));
-      }    
-}  
-   if(isset($_POST['odustani'])){
-   header ("Location: goallin.php"); 
-}
-        ?>
-<?php
-                  
-          if(isset($_GET['dodaj'])){
-    $id = $_GET['dodaj']; 
-$query = "SELECT * from goallin WHERE id = '{$id}'";
-$tabela2 = mysqli_query($konekcija, $query);
-            
-     while($red = mysqli_fetch_assoc($tabela2)){
-        $id = $red['id'];
-        $naslov1 = $red['naslov1'];
-        $naslov2 = $red['naslov2'];
-        $tekst = $red['tekst'];
-        $box_slika = $red['box_slika'];
-        $box_naslov = $red['box_naslov'];
-        $box_tekst = $red['box_tekst'];
-?>   
-       <p>Naslov 1</p>      
-        <input  type="text" class="form-control" name="naslov1"><br>
-       <p>Naslov 2</p>
-       <input type="text" class="form-control" name="naslov2"><br>
-       <p>Tekst</p>
-        <input  type="text" class="form-control" name="tekst"><br>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-      <!--   
-        <p>Box</p>
-        
-        <select name="boxovi" id="">
-            <?php
-         /*$query = "SELECT * from goallin";
-$box = mysqli_query($konekcija, $query);
-            
-     while($red = mysqli_fetch_assoc($box)){
-        $id = $red['id'];
-        $box_naslov = $red['box_naslov'];
-         
-         echo "<option value='{$id}'>{$box_naslov}</option>";
-     }*/
-         
-         ?>
-        
-        </select><br>-->
-        
-        
-        
-        
-        
-        
-        <p>Box slika</p>
-         <input  type="text" class="form-control" name="box_slika"><br>
-          <p>Box naslov</p>
-         <input  type="text" class="form-control" name="box_naslov"><br>
-         <p>Box tekst</p>
-          <input type="text" class="form-control" name="box_tekst"><br>
-        <input class="btn btn-primary" type="submit" name="btn_dodaj" value="Dodaj" >
-        <input class="btn btn-primary" type="submit" name="odustani" value ="Odustani" class="btn btn-default">
-<?php }} ?>        
-                  
-<?php              
-                  
-    if(isset($_POST['btn_dodaj'])){
-
-   $naslov1 = $_POST['naslov1']; 
-    $naslov2 = $_POST['naslov2']; 
-    $tekst = $_POST['tekst']; 
-    $box_slika = $_POST['box_slika']; 
-    $box_naslov = $_POST['box_naslov']; 
-    $box_tekst = $_POST['box_tekst']; 
-        
-        $naslov1 = mysqli_real_escape_string($konekcija, $naslov1);
-        $naslov2 = mysqli_real_escape_string($konekcija, $naslov2);
-        $tekst = mysqli_real_escape_string($konekcija, $tekst);
-        $box_slika = mysqli_real_escape_string($konekcija, $box_slika);
-        $box_naslov = mysqli_real_escape_string($konekcija, $box_naslov);
-        $box_tekst = mysqli_real_escape_string($konekcija, $box_tekst);
-        
-    if($naslov1 == "" || empty($naslov1)){
-        echo "Morate unijeti naziv.";
-    }else{
-        $query="Insert into goallin (naslov1, naslov2, tekst, box_naslov, box_slika, box_tekst) value ('{$naslov1}', '{$naslov2}', '{$tekst}', '{$box_naslov}',  '{$box_slika}', '{$box_tekst}')";
-        $rezultat = mysqli_query($konekcija, $query);
-        header("Location: goallin.php");
-        if(!$rezultat){
-            die('Greška'.mysqli_error($konekcija));
-        }
- }
-         }
-?>
-          
-        </div>
-                        </form>
-
                     </div>
                 </div>
-                  </div>
+               
                 <!-- /.row -->
 
             </div>
